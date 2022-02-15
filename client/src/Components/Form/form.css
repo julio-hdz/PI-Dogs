@@ -1,0 +1,230 @@
+.form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 900px ;
+    align-items: center;
+}
+
+
+.createDog{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+    padding: 20px;
+    height: 800px;
+    justify-content: space-around;
+    background-color: aliceblue;
+}
+.form-name{
+    min-height: 45px;
+    display: flex;
+    flex-direction: column;
+}
+.form-name input{
+    line-height: 10px;
+    height: 18px;
+    
+}
+.form-name span{
+    font-size: 14px;
+    color: red;
+    line-height: 18px;
+    font-weight: 600;
+}
+
+.weight{
+    width: 80%;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.weight section{
+    width: 80%;
+    min-height: 55px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.weight section span{
+    font-size: 14px;
+    color: red;
+    text-align: start;
+    line-height: 14px;
+    font-weight: 600;
+}
+.height{
+    width: 80%;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.height section{
+    width: 80%;
+    min-height: 55px;
+    display: flex;
+    flex-direction: column;
+}
+.height section span{
+    font-size: 14px;
+    color: red;
+    text-align: start;
+    line-height: 14px;
+    font-weight: 600;
+}
+.TempsBox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 85%;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+}
+.TempsBox span{
+    font-size: 14px;
+    color: red;
+    font-weight: 600;
+}
+.item-temperamento{
+    margin: 2px;
+    padding: 5px;
+    border-radius: 25px;
+    border: 2px solid rgb(4, 130, 189);
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    font-size: 14px;
+    line-height: 14px;
+    align-items: center;
+    justify-content:space-evenly;
+    font-weight: 700;
+    transition: all 0.2s;
+    background-color: aliceblue;
+}
+.item-temperamento p{
+    margin: 0;
+}
+
+.item-temperamento:hover{
+    border: 2px solid rebeccapurple;
+    cursor: pointer;
+    transform:scale(1.2);
+}
+.life_span{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    min-height: 40px;
+    margin-bottom: 10px;   
+}
+.life_span span{
+    font-size: 14px;
+    color: red;
+    line-height: 15px;
+    font-weight: 600;
+}
+.life_span input{
+    width: 5%;
+}
+.url{
+    display: flex;
+    flex-direction: column;
+    min-height: 65px;
+    min-width: 80%;
+}
+.url span{
+    font-size: 14px;
+    color: red;
+    line-height: 18px;
+    font-weight: 600;
+}
+.ID {
+    height: 840px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+}
+.ID img{
+    width: 165px;
+    height: 180px;
+}
+.profile{
+    width: 165px;
+    height: 180px;
+    position: relative;
+    left: -8px;
+    top: -45px;
+    border: 1px solid black;
+}
+.values{
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    margin: 0em;
+    padding: 0;
+    width: 300px;
+    font-size: 24px;
+    justify-content: space-evenly;
+}
+.values{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: -10px;
+}
+.values p{
+    margin: 0;
+    padding: 0;
+}
+.frontID{
+    height: 400px;
+    width: 642px;
+    background-image: url('./id\ \(3\).png');
+    background-size: cover;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px 2px black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.backID{
+    width: 642px;
+    height: 400px;
+    background-image: url('./id\ \(4\).png');
+    background-size: cover;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px 2px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.backID span{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 40px;
+    position: relative;
+    top: 110px;
+    text-align: left;
+    width: 70%;
+    min-height: 180px;
+}
+.back {
+    display: flex;
+    flex-direction: row;
+    align-self:flex-start;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}

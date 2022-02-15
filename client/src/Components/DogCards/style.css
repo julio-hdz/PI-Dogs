@@ -1,0 +1,82 @@
+.container-sup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.dog-card{
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    border: 5px solid rgb(1, 164, 170);
+    margin: 5px;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: rgb(234, 247, 250);
+    height: 300px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+}
+.dog-card:hover{
+  transform:scale(1.05);
+  border: 5px solid rgb(126, 0, 151);
+}
+.dog-card img{
+    width: 180px;
+    height: 160px;
+    border-radius: 30px;
+}
+.dog-card p{
+    margin: 0;
+}
+.dog-card h3{
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+
+.loading{
+    font-size: 50px;
+}
+.pageNumbers {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    
+  }
+  .pageNumbers li {
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+  }
+  .pageNumbers li:hover {
+    background-color: rgb(1,164,170);
+    color: white;
+  }
+  .pageNumbers li.active {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    cursor: default;
+  }
+  .pageNumbers li button {
+    border: none;
+    background-color: transparent;
+  }
+  

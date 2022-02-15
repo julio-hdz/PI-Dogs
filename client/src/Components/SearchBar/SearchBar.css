@@ -1,0 +1,24 @@
+.searchbar input[type='text']{
+    min-height: 20px;
+    line-height: 20px;
+    margin-right: 10px;
+    border-color: transparent;
+    width: 400px;
+    
+}
+.searchbar input[type='text']:hover{
+    border: 2px solid rgb(170, 0, 0);
+}
+
+.searchbar input[type='submit']{
+    height: 25px;
+    line-height: 20px;
+    padding: 5;
+    font-weight: bold;    
+    cursor: pointer;
+}
+.searchbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
