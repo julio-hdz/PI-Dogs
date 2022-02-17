@@ -38,12 +38,11 @@ export default function FiltersPanel() {
   }
   ////////////////////// ORDER //////////////////////////
   function handleOrderChange(e) {
-    e.preventDefault();
+    console.log(e.target.value)
     dispatch(changeOrder(e.target.value));
   }
  ///////////////////// Go to FORM ////////////////
  function navigateToForm(e) {
-  e.preventDefault();
   navigate("/createDog");
 }
   ////////////////////////////////////////////////////////
@@ -70,6 +69,7 @@ export default function FiltersPanel() {
         <section className="order">
           <label htmlFor="order">Ordenar por: </label>
           <select name="order" id="order" onChange={handleOrderChange}>
+            <option value="default">Seleccionar</option>
             <option value="a/z">A to Z</option>
             <option value="z/a">Z to A</option>
             <option value="pesoDesc">Heaviest to lightest</option>

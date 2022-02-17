@@ -15,7 +15,7 @@ export default function DogID(props){
             <p id='name'>{name ? name: '-'}</p>
             <p id='weight'>{weight ? weight : '-'} Kg</p>
             <p id='height'>{height ? height : '-'} cm</p>
-            <p id='life_span'>{life_span ? life_span : '-'} años</p>
+            <p id='life_span'>{life_span ? life_span : '-'}</p>
             </div>
             </section>
             <section className="backID">

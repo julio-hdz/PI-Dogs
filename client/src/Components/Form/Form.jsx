@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllTemperaments } from "../../Store/Actions";
+import { fetchAllDogs, fetchAllTemperaments } from "../../Store/Actions";
 import { useNavigate } from "react-router";
 
 import "./form.css";
@@ -12,7 +12,7 @@ export default function CreateDog() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchAllTemperaments());
-  }, []);
+  }, [dispatch]);
   const [height, setHeight] = useState({ min: 0, max: 0 });
   const [weight, setWeight] = useState({ min: 0, max: 0 });
   const [lifeSpan, setLifeSpan] = useState({ min: "", max: "" });
@@ -62,7 +62,7 @@ export default function CreateDog() {
       }
     }
     for(let ken of keys1){
-      if(dog[ken].length==0){
+      if(dog[ken].length===0){
         return false
       }
     }
@@ -88,7 +88,7 @@ export default function CreateDog() {
   }
 
   function validateMinWeight(e) {
-    if (e.target.value == 0) {
+    if (e.target.value === 0) {
       setError({
         ...error,
         weight: "Por favor ingrese un peso mínimo mayor a 0 Kg",
@@ -105,7 +105,7 @@ export default function CreateDog() {
     setDog({...dog, weight: `${e.target.value} - ${weight.max}` })
   }
   function validateMaxWeight(e) {
-    if (e.target.value == 0 || Number(e.target.value) <= Number(weight.min)) {
+    if (e.target.value === 0 || Number(e.target.value) <= Number(weight.min)) {
       setError({
         ...error,
         weight: "Debes ingresar un valor mayor a " + weight.min + "Kg",
@@ -151,7 +151,7 @@ export default function CreateDog() {
     }else if(e.target.value>30 || e.target.value<4){
       setError({...error, life_span: 'Ingresa un valor entre 4 y 30'})
     }else if(e.target.value>=lifeSpan.max){
-      lifeSpan.max==0?
+      Number(lifeSpan.max)===0?
       setError({...error, life_span: ''}) :
       setError({...error, life_span: 'Ingresa un valor menor'})
     }else{
@@ -171,13 +171,12 @@ export default function CreateDog() {
       setError({...error, life_span: ''})
     }
     setLifeSpan({...lifeSpan, max: e.target.value})
-    setDog({...dog, life_span: `${lifeSpan.min} - ${e.target.value}` })
+    setDog({...dog, life_span: `${lifeSpan.min} - ${e.target.value} años` })
   }
 
   function submit(e) {
-    e.preventDefault();
-    axios.post('http://localhost:3001/api/dogs', dog).then((r)=>alert(r.data)).then(()=>handleFormReset())
-
+    e.preventDefault()
+    axios.post('http://localhost:3001/dogs', dog).then((r)=>alert(r.data)).then(()=>handleFormReset()).then(()=>dispatch(fetchAllDogs()))
   }
 
   function validateUrl(e){
@@ -188,13 +187,17 @@ export default function CreateDog() {
     }
     setDog({...dog, image: e.target.value})
   }
-
+  function backButton(){
+    
+    navigate('/home');
+  }
 
 
   return (
     <div className="form">
       <form className="createDog" autoComplete="OFF" onSubmit={submit}>
-        <button className="back" onClick={()=>navigate('/home')}>◄ Volver</button>
+    
+        <button className="back" onClick={backButton}>◄ Volver</button>
         <fieldset className="form-name">
           <section>
           <label htmlFor="name">Nombre de la raza: </label>
@@ -252,7 +255,7 @@ export default function CreateDog() {
               type="range"
               name="minHeight"
               min={0}
-              max={200}
+              max={90}
               value={height.min}
               onChange={(e) => validateMinHeight(e.target.value)}
               />
@@ -266,7 +269,7 @@ export default function CreateDog() {
               type="range"
               name="maxHeight"
               min={0}
-              max={200}
+              max={90}
               value={height.max}
               onChange={(e) => validateMaxHeight(e.target.value)}
             />
@@ -278,7 +281,7 @@ export default function CreateDog() {
         <fieldset className="life_span">
             <div>
           <label >
-            Tiempo de vida: <input type="text" name="life_span_min" id="life_span_min" value={lifeSpan.min} onChange={validateLifeSpanMin}/>
+            Años de vida: <input type="text" name="life_span_min" id="life_span_min" value={lifeSpan.min} onChange={validateLifeSpanMin}/>
           </label> 
              <> a </>
             <input type="text" name="life_span_max" id="life_span_max" value={lifeSpan.max} onChange={validateLifeSpanMax}/>

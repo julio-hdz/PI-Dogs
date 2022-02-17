@@ -12,7 +12,7 @@ import {
 
 export function fetchAllDogs() {
   return function (dispatch) {
-    axios.get("http://localhost:3001/api/dogs").then((r) => {
+    axios.get("http://localhost:3001/dogs").then((r) => {
       dispatch({
         type: FETCH_ALL_DOGS,
         payload: r.data,
@@ -23,7 +23,7 @@ export function fetchAllDogs() {
 
 export function searchDogs(search) {
   return function (dispatch) {
-    axios.get("http://localhost:3001/api/dogs?name=" + search).then((r) => {
+    axios.get("http://localhost:3001/dogs?name=" + search).then((r) => {
       dispatch({
         type: SEARCH_DOGS,
         payload: r.data,
@@ -41,7 +41,7 @@ export function changeOrder(order) {
 
 export function fetchAllTemperaments() {
   return function (dispatch) {
-    axios.get("http://localhost:3001/api/temperament").then((r) => {
+    axios.get("http://localhost:3001/temperament").then((r) => {
       dispatch({
         type: FETCH_ALL_TEMPERAMENTS,
         payload: r.data,

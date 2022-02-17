@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllDogs, fetchAllTemperaments } from "../../Store/Actions";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import DogCard from "./DogCard";
 
 export default function CardContainer() {
   const allDogs = useSelector((state) => state.filteredDogs);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAllDogs());
-    dispatch(fetchAllTemperaments());
-  }, []);
+  
   const renderCards = (data) => {
     return (
       <>
@@ -52,7 +47,7 @@ export default function CardContainer() {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
         <li
-          className={currentPage == number ? "active" : null}
+          className={currentPage === number ? "active" : null}
           key={number}
           id={number}
           onClick={handlePageClick}
@@ -63,13 +58,11 @@ export default function CardContainer() {
     } else return null;
   });
   function handlePageClick(e) {
-    e.preventDefault();
     setCurrentPage(Number(e.target.id));
   }
   function handlePrevClick(e) {
-    e.preventDefault();
     setCurrentPage(currentPage - 1);
-    if ((currentPage - 1) % pageNumberLimit == 0) {
+    if ((currentPage - 1) % pageNumberLimit === 0) {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }

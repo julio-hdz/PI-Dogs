@@ -9,15 +9,14 @@ export default function Details() {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/dogs/" + id)
+      .get("http://localhost:3001/dogs/" + id)
       .then((r) => setDog(r.data))
-      .catch((e) => console.log(e));
-  }, [id]);
-  console.log(dog);
+      .catch((e) => navigate('/*'));
+  }, [id, navigate]);
   const tempToString = (temperaments)=>{
     let stringTemps = '';
       temperaments.forEach(element => {
-        if(element.name==temperaments[0].name){
+        if(element.name===temperaments[0].name){
           stringTemps = element.name;
         }else{
           stringTemps += ', ' + element.name

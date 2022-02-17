@@ -17,42 +17,45 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const { default: axios } = require("axios");
+const  axios  = require("axios");
 const server = require("./src/app.js");
 const { conn, Temperament } = require("./src/db.js");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(async () => {
   //Precargar temperamentos
-
-  const check = await Temperament.findAll();
-  if (check.length < 1) {
-    let temperaments = [];
-    const request = await axios
+  try {
+    const check = await Temperament.findAll();
+    if (check.length < 1) {
+      let temperaments = [];
+      const arrayTemperamentos = await axios
       .get("https://api.thedogapi.com/v1/breeds")
       .then((r) => r.data)
       .then((array) => {
-        return array
-          .map((v) => {
-            return v.temperament ? v.temperament.split(", ") : null;
-          })
+        return array.map((v) => {
+          return v.temperament ? v.temperament.split(", ") : null})
           .filter((v) => {
             return v !== null;
+          })
+        })
+      arrayTemperamentos.forEach((v) => {
+          for (let animo of v) {
+            !temperaments.includes(animo.toLowerCase()) &&
+            temperaments.push(animo.toLowerCase());
+          }
+        });
+        
+      temperaments.forEach((element) => {
+          let newTemp = Temperament.create({
+            name: element,
           });
-      });
-    request.forEach((v) => {
-      for (let animo of v) {
-        !temperaments.includes(animo.toLowerCase()) &&
-          temperaments.push(animo.toLowerCase());
+        });
       }
-    });
-    temperaments.forEach((element) => {
-      let newTemp = Temperament.create({
-        name: element,
+    } catch (error) {
+      throw new Error('No se pudieron precargar los temperamentos desde la API')
+    }
+      server.listen(3001, () => {
+        console.log("%s listening at 3001"); // eslint-disable-line no-console
       });
     });
-  }
-  server.listen(3001, () => {
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
-  });
-});
+    

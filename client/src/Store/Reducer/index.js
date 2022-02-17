@@ -18,7 +18,6 @@ const initialState = {
   filterBox: {
     order: "default",
     onlyDb: false,
-    by: "default",
     temps: '',
   },
 };
@@ -28,7 +27,7 @@ function reducer(state = initialState, action) {
   const onScreenDogs = [...state.filteredDogs];
   switch (action.type) {
     case FETCH_ALL_DOGS:
-      if(state.filteredDogs.length==0){
+      if(state.filteredDogs.length==0 || state.filteredDogs.length < action.payload.length ){
         return {
           ...state,
           originalDogs: action.payload,
@@ -49,6 +48,9 @@ function reducer(state = initialState, action) {
       return { ...state, filteredDogs: action.payload };
 
     case CHANGE_ORDER:
+      if(action.payload=='default'){
+        return{...state, filterBox: {...state.filterBox, order: action.payload}, filteredDogs: dogsCopy}
+      }
       let orderedDogs = giveOrderToDogs(action.payload, onScreenDogs);
       return { 
         ...state, 
