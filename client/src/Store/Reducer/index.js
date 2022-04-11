@@ -20,6 +20,7 @@ const initialState = {
     onlyDb: false,
     temps: '',
   },
+  currentPage: 1,
 };
 
 function reducer(state = initialState, action) {
@@ -92,6 +93,9 @@ function reducer(state = initialState, action) {
           filteredDogs: filteredByTemp
          };
       }
+    case 'SET_CURRENTPAGE':
+      console.log(action.payload)
+      return{...state, currentPage: action.payload}
 
     default:
       return { ...state };

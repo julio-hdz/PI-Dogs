@@ -70,3 +70,9 @@ export function resetFilters(){
         
   }
 }
+export function setCurrentPageAction(number){
+  return{
+    type: 'SET_CURRENTPAGE',
+    payload: number
+  }
+}

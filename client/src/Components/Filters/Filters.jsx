@@ -4,7 +4,8 @@ import { useNavigate } from "react-router";
 import {
   changeOrder, filterDB,
   filterTemp,
-  resetFilters
+  resetFilters,
+  setCurrentPageAction
 } from "../../Store/Actions";
 import SearchBar from "../SearchBar/SearchBar";
 import "./filters.css";
@@ -34,6 +35,7 @@ export default function FiltersPanel() {
   //////////////////////   TEMPS   //////////////////////////
   function handleTempChange(e) {
     document.getElementById("order").value = "a/z";
+    dispatch(setCurrentPageAction(1));
     dispatch(filterTemp(e.target.value));
   }
   ////////////////////// ORDER //////////////////////////

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPageAction } from "../../Store/Actions";
 import DogCard from "./DogCard";
 
 export default function CardContainer() {
   const allDogs = useSelector((state) => state.filteredDogs);
+  const dispatch = useDispatch();
 
   
   const renderCards = (data) => {
@@ -30,7 +32,8 @@ export default function CardContainer() {
     );
   };
   ///////////////////// PAGINATION ////////////////
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
+  let currentPage = useSelector(state=>state.currentPage);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [pageNumberLimit, setpageNumberLimit] = useState(3);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(3);
@@ -58,10 +61,10 @@ export default function CardContainer() {
     } else return null;
   });
   function handlePageClick(e) {
-    setCurrentPage(Number(e.target.id));
+    dispatch(setCurrentPageAction(Number(e.target.id)));
   }
   function handlePrevClick(e) {
-    setCurrentPage(currentPage - 1);
+    dispatch(setCurrentPageAction(currentPage - 1));
     if ((currentPage - 1) % pageNumberLimit === 0) {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
@@ -69,7 +72,7 @@ export default function CardContainer() {
   }
   function handleNextClick(e) {
     e.preventDefault();
-    setCurrentPage(currentPage + 1);
+    dispatch(setCurrentPageAction(currentPage + 1));
 
     if (currentPage + 1 > maxPageNumberLimit) {
       setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
